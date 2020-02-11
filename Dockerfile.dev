@@ -1,0 +1,22 @@
+# simple "Dockerfile" will be file, that will be run for production
+# this one is intended to be used for development
+# so if i run "> npm run start" in console, this is a command that is only intended for dev use. And so is this file.
+FROM node:alpine
+
+WORKDIR '/app'
+
+# no idea why, but this project requires git, to be able to run <npm install>
+RUN apk update && \
+    apk upgrade && \
+    apk add git
+RUN git --version
+
+# to be able to execute "> npm run serve" vue needs to be installed
+RUN npm install -g @vue/cli
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "serve"]
