@@ -1,20 +1,22 @@
 version: '3'
 services:
   web:
-    build:
-      # defines the context, where to look for sources
-      context: .
-      dockerfile: Dockerfile.dev
+#    build:
+#      # defines the context, where to look for sources
+#      context: .
+#      dockerfile: Dockerfile.dev
+    image: mda1234/vue-dev:latest
     ports:
       - "8080:8080"
     volumes:
       - /app/node_modules
       - .:/app
   test:
-    build:
-      # defines the context, where to look for sources
-      context: .
-      dockerfile: Dockerfile.dev
+#    build:
+#      # defines the context, where to look for sources
+#      context: .
+#      dockerfile: Dockerfile.dev
+    image: mda1234/vue-dev:latest
     volumes:
       - /app/node_modules
       - .:/app
