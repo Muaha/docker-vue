@@ -1,0 +1,14 @@
+# we need superuser permissions!
+sudo: required
+# ensure docker is installed in TravisCI
+services:
+  - docker
+
+# tasks to do, before we can run our tests
+before_install:
+# - build docker container, because i can't store it's ID i define a tag
+  - docker build -t mda1234/vue-dev:latest -f Dockerfile.dev .
+
+script:
+# -- --coverage is used, to ensure, that container exits after executing tests
+  - docker run mda1234/vue-dev:latest npm run test -- --coverage
