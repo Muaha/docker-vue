@@ -34,3 +34,24 @@ You can execute tests locally to, by running:
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+##Secret Keys
+To enable Travis CI to access my AWS-Account, it needs some secrets. To enable Travis, there are some steps to execute:
+- in AWS select Sercices -> search for IAM
+- in this service select "users"/"Benutzer"
+- create a new user
+    - give it a descriptive name (in my case "docker-vue-travis-ci")
+    - select "Programmatic access" as Access type
+    - next step select "attach existing policies directly"/"Vorhandene Richtlinien direkt hinzufügen" -> in it select permissions:
+        - search for elastic beanstalk, select something with *full access*
+    - "create user"
+- ATTENTION: the keys will be shown only ONCE!!
+  So be carefull when copying em!
+  - use "Access key ID"/"Zugriffsschlüssel-ID" -> define them on Travis CI Page (see below)
+  - use "Secret access key"/"Geheimer Zugriffsschlüssel" -> define them on Travis CI Page (see below)
+- select project on TravisCI -> more options -> settings
+-  Environment Variables -> stash the keys
+    - "Display value in build log should NOT BE CHECKED"
+    - key AWS_ACCESS_KEY, value XXX
+    - key AWS_ACCESS_SECRET, value XXX
+    - keys will be defined in `.travis.yml`

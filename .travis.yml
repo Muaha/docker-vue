@@ -12,3 +12,25 @@ before_install:
 script:
 # -- --coverage is used, to ensure, that container exits after executing tests
   - docker run mda1234/vue-dev:latest npm run test -- --coverage
+
+
+deploy:
+  provider: elasticbeanstalk
+# wenn clicking on the initial url, of the docker container application created in aws elasticbeanstalk, i can find the region
+  region: "us-east-2"
+# the name i defined in AWS
+  app: "docker-vue"
+# on dashboard i can see the app name in black letters. Below, there is a green box. Inside there is another header. This is the environment name!
+  env: "DockerVue-env"
+# in AWS select services and search for S3. In this, there are my apps listed!
+# here, we can see the bucket_name
+  bucket_name: "elasticbeanstalk-us-east-2-843354184694"
+# by default same as app name
+  bucket_path: "docker-vue"
+# do only deploy app, if new code is added to master branch
+  on:
+    branch: master
+# defining secret keys is complicated. See in README.md at Secret Keys`
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
