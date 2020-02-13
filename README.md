@@ -9,6 +9,7 @@ The full project is dockerized. To setup project, create an docker image:
 image name needs to be pasted into docker-compose file at images tag.
 
 ### Compiles and hot-reloads for development
+**ATTENTION:** `docker-compose` requires an existing image. To build this image, see "Project setup"
 ```
 > docker-compose up
 ```
