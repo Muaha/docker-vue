@@ -1,28 +1,34 @@
 # vue-frontend
 
 ## Project setup
+The full project is dockerized. To setup project, create an docker image:
 ```
-npm install
+> docker build -t <image name>:latest -f Dockerfile.dev .
+> docker build -t mda1234/vue-dev:latest -f Dockerfile.dev .
 ```
+image name needs to be pasted into docker-compose file at images tag.
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+> docker-compose up
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+> docker build -t <image name>:latest .
+> docker build -t mda1234/vue-prod:latest .
 ```
 
 ### Run your tests
+tests are integrated in docker-compose.
+To single execute them, run
 ```
-npm run test
+> docker run -v `pwd`:/app <image name>:latest npm run test
+> docker run -v `pwd`:/app mda1234/vue-dev:latest npm run test
 ```
-
-### Lints and fixes files
+You can execute tests locally to, by running:
 ```
-npm run lint
+> npm run test
 ```
 
 ### Customize configuration
