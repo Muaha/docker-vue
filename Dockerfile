@@ -26,6 +26,7 @@ FROM nginx
 # --from flags copy stuff from build phase
 # specify which folder to copty AND specify destination according to nginx specifications
 # https://hub.docker.com/_/nginx/
+EXPOSE 80
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 #CMD is not needed, because default of nginx container starts up itself
